@@ -1,14 +1,21 @@
 import "@/assets/styles/globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "Property Management System",
   keywords: ["property", "management", "system"],
   description: "this is a property management system",
 };
+
 const MainLayout = ({ children }) => {
   return (
     <html>
-      <body>{children}</body>
+      <body>
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 };
