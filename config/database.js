@@ -1,5 +1,29 @@
 import mongoose from "mongoose";
 
+//// TRAVERSY CODE
+let connected = false;
+
+export const connectToDatabase = async () => {
+  mongoose.set("strictQuery", true);
+
+  // If the database is already connected, don't connect again
+  if (connected) {
+    console.log("MongoDB is already connected...");
+    return;
+  }
+
+  // Connect to MongoDB
+  try {
+    await mongoose.connect(process.env.MONGODB_URL);
+    connected = true;
+    console.log("MongoDB connected...");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+///IA CODE
+
 // const MONGODB_URI = process.env.MONGODB_URI;
 
 // if (!MONGODB_URI) {
@@ -28,25 +52,3 @@ import mongoose from "mongoose";
 //   cached.conn = await cached.promise;
 //   return cached.conn;
 // }
-
-//// TRAVERSY CODE
-let connected = false;
-
-export const connectToDatabase = async () => {
-  mongoose.set("strictQuery", true);
-
-  // If the database is already connected, don't connect again
-  if (connected) {
-    console.log("MongoDB is already connected...");
-    return;
-  }
-
-  // Connect to MongoDB
-  try {
-    await mongoose.connect(process.env.MONGODB_URL);
-    connected = true;
-    console.log("MongoDB connected...");
-  } catch (error) {
-    console.log(error);
-  }
-};
